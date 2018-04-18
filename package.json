@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build-task:scss-compile": "node-sass-chokidar --source-map true src/scss/ -o dist/css",
+    "build-task:autoprefixer": "postcss dist/css/*.css --use autoprefixer -d dist/css",
+    "sass:build": "npm-run-all -p build-task:*",
+    "sass:watch": "chokidar 'src/scss/**/*.scss' -c 'npm run sass:build'"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +21,15 @@
     ]
   },
   "dependencies": {
+    "autoprefixer": "^8.3.0",
     "bootstrap": "^4.0.0",
+    "chokidar-cli": "^1.2.0",
     "firebase": "^4.12.1",
     "formik": "^0.11.11",
+    "node-sass-chokidar": "^1.2.2",
     "npm": "^5.8.0",
+    "npm-run-all": "^4.1.2",
+    "postcss-cli": "^5.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "reactstrap": "^5.0.0-beta.3"
