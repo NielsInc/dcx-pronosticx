@@ -1,13 +1,12 @@
 import React from 'react';
-import StartComponent from "./StartComponent";
+import NavigationComponent from "./navigation/NavigationComponent";
 
 class App extends React.Component {
     render() {
         return (
-            <div className="component-app">
-                <StartComponent/>
-            </div>
+            <NavigationComponent/>
         );
     }
 }
+
 export default App;

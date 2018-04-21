@@ -1,11 +1,11 @@
 import React from "react";
-import {loginWithGoogle, logout} from "../helpers/auth";
-import {firebaseAuth} from "../config/firebase";
+import {loginWithGoogle, logout} from "../../helpers/auth";
+import {firebaseAuth} from "../../config/firebase";
 
 
 const firebaseAuthKey = "firebaseAuthInProgress";
 
-export default class StartComponent extends React.Component {
+export default class AccountButton extends React.Component {
     state = {
         isSignedIn: false,
         userProfile: {}
@@ -39,10 +39,14 @@ export default class StartComponent extends React.Component {
     };
 
     render() {
+        {/*<h1>Signed in: {this.state.userProfile.displayName}&lt;{this.state.userProfile.email}&gt;</h1>*/
+        }
         return (<div>
-            <button onClick={this.handleGoogleLogin}>Sign in using Google</button>
-            <button onClick={this.handleLogout}>Logout</button>
-            <h1>Signed in: {this.state.userProfile.displayName}&lt;{this.state.userProfile.email}&gt;</h1>
+            {!this.state.isSignedIn ?
+                <button className={'btn red waves-effect waves-light'} onClick={this.handleGoogleLogin}>
+                    Log in</button> :
+                <button className={'btn white blue-text waves-effect waves-light'} onClick={this.handleLogout}>
+                    <i className="material-icons left">exit_to_app</i>Logout</button>}
         </div>);
     }
 
